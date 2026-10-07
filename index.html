@@ -64,7 +64,7 @@ button.latest-card{appearance:none;width:100%;text-align:left;color:inherit;font
 .source-link{display:inline-block;margin-left:8px;font-size:.75rem;white-space:nowrap}
 .article-dialog{width:min(1040px,calc(100vw - 32px));max-height:min(900px,calc(100vh - 36px))}
 .article-modal-head{padding:22px 64px 14px 24px;border-bottom:1px solid var(--line);background:linear-gradient(145deg,var(--paper),color-mix(in srgb,var(--teal) 5%,var(--paper)))}
-.article-usage-note,.article-image-note{margin-left:.35em;color:var(--muted);font-weight:700;letter-spacing:0;text-transform:none}
+.article-usage-note{margin-left:.35em;color:var(--muted);font-weight:700;letter-spacing:0;text-transform:none}
 .article-modal-head h2{font-size:1.32rem;line-height:1.35;margin:4px 0;color:var(--ink)}
 .article-modal-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
 .pane-tabs{display:flex;flex-wrap:wrap;gap:6px}
@@ -234,7 +234,7 @@ window.__PREBAKED_AIHR_DETAILS__ = {"360-recruitment": {"slug": "360-recruitment
   <div class="card-modal-dialog article-dialog" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle">
     <button class="modal-close" id="articleModalClose" type="button" aria-label="關閉文章">×</button>
     <header class="article-modal-head">
-      <p class="eyebrow">AIHR 本地文章 <span class="article-usage-note">(本文僅供個人學習使用；引用與分享請回到原文並遵守網站條款。)</span><span class="article-image-note" id="articleImageNote"></span></p>
+      <p class="eyebrow">AIHR 本地文章 <span class="article-usage-note" id="articleUsageNote"></span></p>
       <h2 id="articleModalTitle"></h2>
       <p class="zh-title" id="articleModalZh"></p>
       <div class="article-modal-tools">
@@ -599,7 +599,7 @@ function showArticle(article){
  $('#articleModalZh').textContent=article.title_zh||'';
  $('#articleSourceLink').href=article.url;
  const hasImages=(article.images||[]).some(item=>/^https?:\/\//.test(item.src||''));
- $('#articleImageNote').textContent=hasImages?'':' · 本地全文沒有內嵌圖片。圖仍在 AIHR 原文頁。';
+ $('#articleUsageNote').textContent=hasImages?'（本文僅供個人學習使用；引用與分享請回到原文並遵守網站條款。）':'（本文僅供個人學習使用；引用與分享請回到原文並遵守網站條款。另本地全文無內嵌圖片。圖片請參考原文頁。）';
  $$('#articleModal .pane-btn').forEach(button=>button.classList.toggle('active', button.dataset.pane===articlePane));
  const images=imageGallery(article.images);
  const sourceMeta=articleSourceMeta(article);
@@ -615,7 +615,7 @@ async function openArticle(slug){
  document.body.style.overflow='hidden';
  $('#articleModalTitle').textContent=known?known.title:'讀取中';
  $('#articleModalZh').textContent='';
- $('#articleImageNote').textContent='';
+ $('#articleUsageNote').textContent='';
  $('#articleModalBody').innerHTML='<p>讀取全文…</p>';
  try{
   let article=articleCache.get(slug);
