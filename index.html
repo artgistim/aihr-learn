@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>數據分析 x 員工體驗研究及生命週期決策藍圖</title>
 <style>
 :root{--bg:#f3f1ea;--paper:#fffef9;--ink:#172432;--muted:#61707d;--line:#d9d8d0;--nav:#123a50;--teal:#087f72;--gold:#c18a16;--rose:#a63e55;--blue:#2868a9;--violet:#7251a3;--grid:rgba(18,58,80,.08);--shadow:0 8px 24px rgba(24,41,54,.1)}
@@ -61,6 +64,7 @@ button.latest-card{appearance:none;width:100%;text-align:left;color:inherit;font
 .source-link{display:inline-block;margin-left:8px;font-size:.75rem;white-space:nowrap}
 .article-dialog{width:min(1040px,calc(100vw - 32px));max-height:min(900px,calc(100vh - 36px))}
 .article-modal-head{padding:22px 64px 14px 24px;border-bottom:1px solid var(--line);background:linear-gradient(145deg,var(--paper),color-mix(in srgb,var(--teal) 5%,var(--paper)))}
+.article-usage-note,.article-image-note{margin-left:.35em;color:var(--muted);font-weight:700;letter-spacing:0;text-transform:none}
 .article-modal-head h2{font-size:1.32rem;line-height:1.35;margin:4px 0;color:var(--ink)}
 .article-modal-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
 .pane-tabs{display:flex;flex-wrap:wrap;gap:6px}
@@ -78,6 +82,7 @@ button.latest-card{appearance:none;width:100%;text-align:left;color:inherit;font
 .article-modal-body li{margin-bottom:6px}
 .article-modal-body strong{color:var(--ink);font-weight:750}
 .article-modal-body blockquote{margin:14px 0;padding:10px 16px;border-left:4px solid var(--teal);background:color-mix(in srgb,var(--teal) 7%,var(--paper));border-radius:0 8px 8px 0;color:var(--muted);font-size:.88rem;line-height:1.6}
+.clean-summary{display:grid;gap:18px}.clean-summary section{min-width:0}.clean-summary section+section{padding-top:16px;border-top:1px solid var(--line)}.clean-summary h3{margin:0 0 8px;color:var(--teal)}.clean-summary p{max-width:82ch;margin:0;line-height:1.75}
 .article-modal-body code{padding:2px 6px;border-radius:4px;background:color-mix(in srgb,var(--nav) 10%,var(--paper));font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:.84em;color:var(--teal)}
 [data-theme="dark"] .article-modal-body code{color:var(--gold);background:rgba(255,255,255,.08)}
 .article-modal-body hr.markdown-hr{border:0;height:1px;background:var(--line);margin:22px 0}
@@ -229,7 +234,7 @@ window.__PREBAKED_AIHR_DETAILS__ = {"360-recruitment": {"slug": "360-recruitment
   <div class="card-modal-dialog article-dialog" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle">
     <button class="modal-close" id="articleModalClose" type="button" aria-label="關閉文章">×</button>
     <header class="article-modal-head">
-      <p class="eyebrow">AIHR 本地文章</p>
+      <p class="eyebrow">AIHR 本地文章 <span class="article-usage-note">(本文僅供個人學習使用；引用與分享請回到原文並遵守網站條款。)</span><span class="article-image-note" id="articleImageNote"></span></p>
       <h2 id="articleModalTitle"></h2>
       <p class="zh-title" id="articleModalZh"></p>
       <div class="article-modal-tools">
@@ -329,9 +334,12 @@ function inlineMarkdown(value){
  text=text.replace(/`([^`]+)`/g,'<code>$1</code>');
  return text;
 }
+function withoutUsageNotices(source){
+ return String(source||'').replace(/^[ \t]*>[ \t]*(?:本地副本僅供個人學習；引用與分享請回到原文並遵守網站條款。?|本文僅供個人學習與內部研究使用。?|本文僅供個人學習使用；引用與分享請回到原文並遵守網站條款。?)[ \t]*\n?/gm,'');
+}
 function renderMarkdown(source){
  if(!source) return '<p class="empty-copy">這篇還沒有這個語言的全文。</p>';
- const lines=String(source).replace(/\r\n/g,'\n').split('\n');
+ const lines=withoutUsageNotices(source).replace(/\r\n/g,'\n').split('\n');
  const out=[];
  let list=null;
  const flush=()=>{ if(!list) return; out.push(`<${list.type}>${list.items.join('')}</${list.type}>`); list=null; };
@@ -419,8 +427,121 @@ function renderMarkdown(source){
 }
 function imageGallery(images){
  const safe=(images||[]).filter(item=>/^https?:\/\//.test(item.src||''));
- if(!safe.length) return '<p class="update-note">本地全文沒有內嵌圖片。圖仍在 AIHR 原文頁。</p>';
+ if(!safe.length) return '';
  return `<div class="article-images">${safe.map(item=>`<figure><img src="${esc(item.src)}" alt="${esc(item.alt||'')}"></figure>`).join('')}</div>`;
+}
+function articleSourceMeta(article){
+ const url=esc(article.url||'');
+ const author=esc(article.author||'未標示');
+ return `<blockquote><strong>原文網址</strong>：<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a><br><strong>原文作者</strong>：${author}</blockquote>`;
+}
+function withoutInlineSourceMetadata(source){
+ return String(source||'')
+  .split('\n')
+  .filter(line=>!/^[ \t]*>[ \t]*(?:\*\*)?原文(?:網址|作者|連結)?(?:\*\*)?[：:]/.test(line))
+  .join('\n')
+  .replace(/^\s+/, '');
+}
+function cleanSummaryText(value){
+ return String(value||'')
+  .replace(/^#{1,6}\s+.*$/gm,' ')
+  .replace(/!\[[^\]]*\]\([^)]+\)/g,' ')
+  .replace(/\[([^\]]+)\]\([^)]+\)/g,'$1')
+  .replace(/^\s*(?:[-*]|\d+\.)\s+/gm,' ')
+  .replace(/[>*_`]/g,'')
+  .replace(/\s+/g,' ')
+  .trim()
+  .replace(/^(?:核心主張|Core claim)[：:]\s*/i,'');
+}
+function shortSummary(value,maxChars){
+ const text=cleanSummaryText(value);
+ if(text.length<=maxChars) return text;
+ const sample=text.slice(0,maxChars+1);
+ const sentenceCut=Math.max(sample.lastIndexOf('。'),sample.lastIndexOf('！'),sample.lastIndexOf('？'),sample.lastIndexOf('. '),sample.lastIndexOf('! '),sample.lastIndexOf('? '));
+ if(sentenceCut>=Math.floor(maxChars*.55)) return sample.slice(0,sentenceCut+1).trim();
+ const wordCut=sample.lastIndexOf(' ');
+ const cut=wordCut>=Math.floor(maxChars*.7)?wordCut:maxChars;
+ return sample.slice(0,cut).trimEnd()+'…';
+}
+function firstNarrativeParagraph(source){
+ const paragraphs=String(source||'').replace(/\r\n/g,'\n').split(/\n\s*\n/);
+ for(const paragraph of paragraphs){
+  const text=paragraph.trim();
+  if(!text||/^(?:>|#|---|Contents\b|[-*]\s|\d+\.\s)/i.test(text)) continue;
+  return text;
+ }
+ return '';
+}
+function chineseSectionLead(source){
+ const lines=String(source||'').replace(/\r\n/g,'\n').split('\n');
+ let start=lines.findIndex(line=>/^#{1,4}\s+.*專業深度編譯/.test(line));
+ if(start<0) start=lines.findIndex(line=>/^#{1,4}\s+.*簡要翻譯/.test(line));
+ if(start<0) return '';
+ for(let i=start+1;i<lines.length;i++){
+  const line=lines[i].trim();
+  if(!line||/^#{1,4}\s+/.test(line)||/^---+$/.test(line)||/^>/.test(line)||/^\|/.test(line)) continue;
+  if(!cleanSummaryText(line)) continue;
+  return line;
+ }
+ return '';
+}
+function cleanKeywordCell(value){
+ return String(value||'')
+  .replace(/\[([^\]]+)\]\([^)]+\)/g,'$1')
+  .replace(/<br\s*\/?\s*>/gi,' ')
+  .replace(/[\*_`]/g,'')
+  .replace(/\s+/g,' ')
+  .trim();
+}
+const SUPPLEMENTAL_KEYWORD_PAIRS={
+ '7-reasons-why-employee-recognition-matters':[['Employee Recognition','員工肯定'],['Rewards','獎勵'],['Employee Engagement','員工敬業度'],['Employee Retention','員工留任'],['Peer Recognition','同儕肯定'],['Recognition Program','員工肯定方案']],
+ 'agile-workforce-planning':[['Agile Workforce Planning','敏捷人力規劃'],['Strategic Workforce Planning','策略性人力規劃'],['Workforce Capability','人力能力'],['Scenario Planning','情境規劃'],['Skills Gap','技能缺口'],['Labor Market','勞動市場']],
+ 'ai-agents-for-recruiting':[['AI Recruiting Agent','AI 招募代理'],['Talent Sourcing','人才搜尋'],['Candidate Screening','候選人篩選'],['Applicant Tracking System','求職者追蹤系統'],['Recruitment Automation','招募自動化'],['Algorithmic Bias','演算法偏誤']],
+ 'ai-and-employee-wellbeing':[['Employee Wellbeing','員工福祉'],['Artificial Intelligence','人工智慧'],['Burnout','職業倦怠'],['Mental Health','心理健康'],['Psychosocial Risk','心理社會風險'],['Human Oversight','人工監督']],
+ 'ai-for-employee-experience':[['Employee Experience','員工體驗'],['Artificial Intelligence','人工智慧'],['Personalization','個人化'],['Employee Journey','員工旅程'],['Sentiment Analysis','情緒分析'],['Data Privacy','資料隱私']],
+ 'ai-onboarding':[['AI Onboarding','AI 新人到職引導'],['Employee Onboarding','新人到職引導'],['Workflow Automation','工作流程自動化'],['Personalized Learning','個人化學習'],['Time to Productivity','達到生產力所需時間'],['Human Touch','人際互動']],
+ 'ai-training-for-employees':[['AI Training','AI 培訓'],['AI Literacy','AI 素養'],['Upskilling','技能提升'],['Role-based Learning','依職務設計的學習'],['Responsible AI','負責任的 AI'],['Learning Transfer','學習移轉']],
+ 'ai-workforce-planning':[['AI Workforce Planning','AI 人力規劃'],['Demand Forecasting','人力需求預測'],['Skills Inventory','技能盤點'],['Scenario Planning','情境規劃'],['Workforce Analytics','人力分析'],['Data Governance','資料治理']],
+ 'digital-hr':[['Digital HR','數位人資'],['Digital Transformation','數位轉型'],['HR Technology','人資科技'],['Employee Experience','員工體驗'],['Process Automation','流程自動化'],['Data-driven HR','資料驅動人資']],
+ 'employee-engagement-best-practices':[['Employee Engagement','員工敬業度'],['Employee Voice','員工意見'],['Manager Effectiveness','主管效能'],['Recognition','肯定與認可'],['Belonging','歸屬感'],['Action Planning','行動規劃']],
+ 'employee-experience-vs-employee-engagement':[['Employee Experience','員工體驗'],['Employee Engagement','員工敬業度'],['Employee Journey','員工旅程'],['Engagement Survey','敬業度調查'],['Touchpoint','接觸點'],['Employee Listening','員工聆聽']],
+ 'employee-listening-strategy':[['Employee Listening','員工聆聽'],['Employee Voice','員工意見'],['Pulse Survey','脈動調查'],['Feedback Channel','回饋管道'],['Psychological Safety','心理安全感'],['Action Planning','行動規劃']],
+ 'onboarding-metrics':[['Onboarding Metrics','到職引導指標'],['Time to Productivity','達到生產力所需時間'],['New Hire Turnover','新人離職率'],['Role Clarity','角色清晰度'],['Onboarding Satisfaction','到職引導滿意度'],['Training Completion','訓練完成率']],
+ 'employee-experience-manager':[['Employee Experience Manager','員工體驗經理'],['Employee Experience Strategy','員工體驗策略'],['Employee Journey','員工旅程'],['Employee Listening','員工聆聽'],['Cross-functional Collaboration','跨部門協作'],['EX Metrics','員工體驗指標']]
+};
+function keywordPairs(article){
+ const lines=String(article.body_zh||'').replace(/\r\n/g,'\n').split('\n');
+ const start=lines.findIndex(line=>/^#{1,4}\s+.*(?:關鍵字|術語對照|Glossary)/i.test(line));
+ const pairs=[];
+ if(start>=0){
+  for(let i=start+1;i<Math.min(lines.length,start+35);i++){
+   const line=lines[i].trim();
+   if(/^#{1,4}\s+/.test(line)&&pairs.length) break;
+   if(!line.includes('|')){ if(pairs.length) break; continue; }
+   const cells=line.replace(/^\|/,'').replace(/\|$/,'').split('|').map(cleanKeywordCell);
+   if(cells.length<2||cells.every(cell=>/^:?-{3,}:?$/.test(cell))) continue;
+   if(/英文|english/i.test(cells[0])&&/(中文|traditional)/i.test(cells[1])) continue;
+   if(cells[0]&&cells[1]) pairs.push([cells[0],cells[1]]);
+  }
+ }
+ const supplemental=SUPPLEMENTAL_KEYWORD_PAIRS[article.slug]||[];
+ supplemental.forEach(pair=>{
+  if(!pairs.some(existing=>existing[0].toLocaleLowerCase()===pair[0].toLocaleLowerCase())) pairs.push(pair);
+ });
+ return pairs.slice(0,6);
+}
+function renderSummaryPane(article){
+ const zh=shortSummary(chineseSectionLead(article.body_zh)||article.summary_zh||article.body_zh,240);
+ const en=shortSummary(firstNarrativeParagraph(article.body_en)||article.summary_en||article.body_en,520);
+ const pairs=keywordPairs(article);
+ const blocks=[];
+ if(zh) blocks.push(`<section><h3>中文摘要</h3><p>${esc(zh)}</p></section>`);
+ if(en) blocks.push(`<section><h3>English Summary</h3><p lang="en">${esc(en)}</p></section>`);
+ if(pairs.length){
+  const rows=pairs.map(([english,chinese])=>`<tr><td lang="en"><strong>${esc(english)}</strong></td><td>${esc(chinese)}</td></tr>`).join('');
+  blocks.push(`<section><h3>中英文關鍵字對照</h3><div class="table-wrapper"><table class="markdown-table"><thead><tr><th>English</th><th>繁體中文</th></tr></thead><tbody>${rows}</tbody></table></div></section>`);
+ }
+ return `<div class="clean-summary">${blocks.join('')||'<p class="empty-copy">這篇還沒有摘要。</p>'}</div>`;
 }
 function renderHome(){
  const categories=[...new Set(aihrArticles.map(a=>a.category))].sort((a,b)=>a.localeCompare(b,'zh-Hant'));
@@ -428,31 +549,23 @@ function renderHome(){
  $('#articleCategory').innerHTML='<option value="all">全部分類</option>'+categories.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');
  $('#articleYear').innerHTML='<option value="all">全部年份</option>'+years.map(x=>`<option value="${x}">${x}</option>`).join('');
  const latest=[...aihrArticles].sort((a,b)=>(b.updated||b.date).localeCompare(a.updated||a.date)).slice(0,4);
- $('#latestArticles').innerHTML=latest.map(a=>`<button class="latest-card" type="button" data-slug="${esc(a.slug)}"><span class="tagline">${esc(a.category)} · ${formatDate(a.updated||a.date)}</span><strong>${esc(a.title)}</strong>${a.title_zh?`<span class="zh-title">${esc(a.title_zh)}</span>`:''}<small>${esc(plainText(a.summary_zh||a.summary_en).slice(0,90))}</small></button>`).join('');
+ $('#latestArticles').innerHTML=latest.map(a=>`<button class="latest-card" type="button" data-slug="${esc(a.slug)}"><span class="tagline">${esc(a.category)} · ${formatDate(a.updated||a.date)}</span><strong>${esc(a.title)}</strong>${a.title_zh?`<span class="zh-title">${esc(a.title_zh)}</span>`:''}<small>${esc(shortSummary(a.summary_zh||a.summary_en,90))}</small></button>`).join('');
  const zhCount=aihrArticles.filter(a=>a.has_zh).length;
- $('#librarySource').textContent=`SQLite · ${aihrArticles.length} 篇 · ${zhCount} 篇有中文`;
+ $('#librarySource').textContent=`資料來源：地端 SQLite · ${aihrArticles.length} 篇原文 · 其中 ${zhCount} 篇已翻譯中文`;
  filterArticles();
 }
 async function loadArticles(){
  try{
-  const response=await fetch('/api/aihr-articles');
+  const response=await fetch('/api/aihr-articles',{cache:'no-store'});
   if(!response.ok) throw new Error('文章 API 回應失敗');
   aihrArticles=await response.json();
   renderHome();
  }catch{
-  // 進入靜態／離線 Fallback 模式（適用於 GitHub Pages 或直接打開 HTML）
-  if(window.__PREBAKED_AIHR_ARTICLES__ && window.__PREBAKED_AIHR_ARTICLES__.length){
-   aihrArticles=window.__PREBAKED_AIHR_ARTICLES__;
-   renderHome();
-   const zhCount=aihrArticles.filter(a=>a.has_zh).length;
-   $('#librarySource').textContent=`發布版靜態資料 · ${aihrArticles.length} 篇 · ${zhCount} 篇有中文`;
-  }else{
-   aihrArticles=[];
-   $('#latestArticles').innerHTML='<p class="empty-copy">無內建文章資料。</p>';
-   $('#articleRows').innerHTML='<tr><td class="empty-row" colspan="6">尚未連上文章資料庫</td></tr>';
-   $('#articleCount').textContent='尚未連上文章資料庫';
-   $('#librarySource').textContent='需要本機服務才能讀 SQLite';
-  }
+  aihrArticles=[];
+  $('#latestArticles').innerHTML='<p class="empty-copy">讀不到 SQLite。請在專案資料夾執行 python3 serve_blueprint.py，再開 http://127.0.0.1:8765/ 。直接點開 HTML 檔無法讀資料庫。</p>';
+  $('#articleRows').innerHTML='<tr><td class="empty-row" colspan="6">尚未連上 AIHR文章學習/aihr_articles.db</td></tr>';
+  $('#articleCount').textContent='尚未連上文章資料庫';
+  $('#librarySource').textContent='需要本機服務才能讀 SQLite';
  }
 }
 function renderArticlePagination(totalPages){
@@ -485,17 +598,14 @@ function showArticle(article){
  $('#articleModalTitle').textContent=article.title;
  $('#articleModalZh').textContent=article.title_zh||'';
  $('#articleSourceLink').href=article.url;
+ const hasImages=(article.images||[]).some(item=>/^https?:\/\//.test(item.src||''));
+ $('#articleImageNote').textContent=hasImages?'':' · 本地全文沒有內嵌圖片。圖仍在 AIHR 原文頁。';
  $$('#articleModal .pane-btn').forEach(button=>button.classList.toggle('active', button.dataset.pane===articlePane));
  const images=imageGallery(article.images);
- if(articlePane==='en') $('#articleModalBody').innerHTML=images+renderMarkdown(article.body_en);
- else if(articlePane==='zh') $('#articleModalBody').innerHTML=(article.has_zh?renderMarkdown(article.body_zh):'<p class="empty-copy">這篇還沒有中文譯本。</p>');
- else{
-  const blocks=[];
-  if(article.summary_zh) blocks.push(`<section><h3>中文摘要</h3>${renderMarkdown(article.summary_zh)}</section>`);
-  if(article.summary_en) blocks.push(`<section><h3>英文摘要</h3><p>${esc(article.summary_en)}</p></section>`);
-  if(!blocks.length) blocks.push('<p class="empty-copy">這篇還沒有摘要。</p>');
-  $('#articleModalBody').innerHTML=blocks.join('');
- }
+ const sourceMeta=articleSourceMeta(article);
+ if(articlePane==='en') $('#articleModalBody').innerHTML=sourceMeta+images+renderMarkdown(withoutInlineSourceMetadata(article.body_en));
+ else if(articlePane==='zh') $('#articleModalBody').innerHTML=(article.has_zh?sourceMeta+renderMarkdown(withoutInlineSourceMetadata(article.body_zh)):'<p class="empty-copy">這篇還沒有中文譯本。</p>');
+ else $('#articleModalBody').innerHTML=renderSummaryPane(article);
 }
 async function openArticle(slug){
  const known=aihrArticles.find(item=>item.slug===slug);
@@ -505,20 +615,14 @@ async function openArticle(slug){
  document.body.style.overflow='hidden';
  $('#articleModalTitle').textContent=known?known.title:'讀取中';
  $('#articleModalZh').textContent='';
+ $('#articleImageNote').textContent='';
  $('#articleModalBody').innerHTML='<p>讀取全文…</p>';
  try{
   let article=articleCache.get(slug);
   if(!article){
-   try{
-    const response=await fetch('/api/aihr-articles/'+encodeURIComponent(slug));
-    if(response.ok){
-     article=await response.json();
-    }
-   }catch(e){}
-   if(!article && window.__PREBAKED_AIHR_DETAILS__ && window.__PREBAKED_AIHR_DETAILS__[slug]){
-    article=window.__PREBAKED_AIHR_DETAILS__[slug];
-   }
-   if(!article) throw new Error('讀取不到該文章全文');
+   const response=await fetch('/api/aihr-articles/'+encodeURIComponent(slug),{cache:'no-store'});
+   if(!response.ok) throw new Error('讀不到這篇');
+   article=await response.json();
    articleCache.set(slug, article);
   }
   showArticle(article);
