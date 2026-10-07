@@ -108,12 +108,151 @@ def collect_database_data() -> tuple[list[dict], dict[str, dict]]:
     return article_list, article_details
 
 
+def embed_json(value: object) -> str:
+    """嵌進 <script> 的 JSON。把 < 與行分隔字元跳脫，避免正文提前結束 script。"""
+    text = json.dumps(value, ensure_ascii=False)
+    return text.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
+
+
+def _skip_js_string(src: str, i: int, quote: str) -> int:
+    n = len(src)
+    i += 1
+    while i < n:
+        if src[i] == "\\":
+            i += 2
+            continue
+        if src[i] == quote:
+            return i + 1
+        i += 1
+    raise RuntimeError("JavaScript 字串沒有收尾")
+
+
+def _function_end(src: str, open_brace: int) -> int:
+    """open_brace 指向 '{'，回傳函式結束大括號的下一個位置。"""
+    n = len(src)
+    i = open_brace
+    depth = 0
+    while i < n:
+        ch = src[i]
+        nxt = src[i + 1] if i + 1 < n else ""
+        if ch == "{":
+            depth += 1
+            i += 1
+            continue
+        if ch == "}":
+            depth -= 1
+            i += 1
+            if depth == 0:
+                return i
+            continue
+        if ch in {"'", '"'}:
+            i = _skip_js_string(src, i, ch)
+            continue
+        if ch == "`":
+            i = _skip_js_template(src, i)
+            continue
+        if ch == "/" and nxt == "/":
+            nl = src.find("\n", i)
+            i = n if nl < 0 else nl + 1
+            continue
+        if ch == "/" and nxt == "*":
+            end = src.find("*/", i + 2)
+            if end < 0:
+                raise RuntimeError("JavaScript 註解沒有收尾")
+            i = end + 2
+            continue
+        i += 1
+    raise RuntimeError("JavaScript 函式大括號沒有收尾")
+
+
+def _skip_js_template(src: str, i: int) -> int:
+    n = len(src)
+    i += 1
+    while i < n:
+        if src[i] == "\\":
+            i += 2
+            continue
+        if src[i] == "`":
+            return i + 1
+        if src[i] == "$" and i + 1 < n and src[i + 1] == "{":
+            i = _function_end(src, i + 1)
+            continue
+        i += 1
+    raise RuntimeError("JavaScript template 沒有收尾")
+
+
+def replace_js_function(html: str, signature: str, new_source: str) -> str:
+    """用大括號配對替換函式。字串對不上時直接失敗，避免靜態 fallback 被靜默跳過。"""
+    start = html.find(signature)
+    if start < 0:
+        raise RuntimeError(f"找不到 `{signature}`，靜態 fallback 沒有裝上。")
+    if html.find(signature, start + len(signature)) >= 0:
+        raise RuntimeError(f"`{signature}` 出現超過一次。")
+    brace = html.find("{", start)
+    if brace < 0:
+        raise RuntimeError(f"`{signature}` 後面沒有函式本體。")
+    end = _function_end(html, brace)
+    return html[:start] + new_source.strip() + html[end:]
+
+
+NEW_LOAD_ARTICLES = """async function loadArticles(){
+ try{
+  const response=await fetch('/api/aihr-articles',{cache:'no-store'});
+  if(!response.ok) throw new Error('文章 API 回應失敗');
+  aihrArticles=await response.json();
+  renderHome();
+ }catch{
+  if(window.__PREBAKED_AIHR_ARTICLES__ && window.__PREBAKED_AIHR_ARTICLES__.length){
+   aihrArticles=window.__PREBAKED_AIHR_ARTICLES__;
+   renderHome();
+   const zhCount=aihrArticles.filter(a=>a.has_zh).length;
+   $('#librarySource').textContent=`發布版靜態資料 · ${aihrArticles.length} 篇 · ${zhCount} 篇有中文`;
+  }else{
+   aihrArticles=[];
+   $('#latestArticles').innerHTML='<p class="empty-copy">讀不到文章。請在這個資料夾執行 python3 serve_blueprint.py，再開 http://127.0.0.1:8768/ 。</p>';
+   $('#articleRows').innerHTML='<tr><td class="empty-row" colspan="6">尚未連上文章資料庫</td></tr>';
+   $('#articleCount').textContent='尚未連上文章資料庫';
+   $('#librarySource').textContent='需要本機服務或重新打包發布版';
+  }
+ }
+}"""
+
+NEW_OPEN_ARTICLE = """async function openArticle(slug){
+ const known=aihrArticles.find(item=>item.slug===slug);
+ articlePane=known&&known.has_zh?'summary':'en';
+ $('#articleModal').dataset.slug=slug;
+ $('#articleModal').hidden=false;
+ document.body.style.overflow='hidden';
+ $('#articleModalTitle').textContent=known?known.title:'讀取中';
+ $('#articleModalZh').textContent='';
+ $('#articleUsageNote').textContent='';
+ $('#articleModalBody').innerHTML='<p>讀取全文…</p>';
+ try{
+  let article=articleCache.get(slug);
+  if(!article){
+   try{
+    const response=await fetch('/api/aihr-articles/'+encodeURIComponent(slug),{cache:'no-store'});
+    if(response.ok) article=await response.json();
+   }catch(e){}
+   if(!article && window.__PREBAKED_AIHR_DETAILS__ && window.__PREBAKED_AIHR_DETAILS__[slug]){
+    article=window.__PREBAKED_AIHR_DETAILS__[slug];
+   }
+   if(!article) throw new Error('讀不到這篇');
+   articleCache.set(slug, article);
+  }
+  showArticle(article);
+ }catch(error){
+  $('#articleModalBody').innerHTML=`<p class="empty-copy">${esc(error.message||'讀取失敗')}</p>`;
+ }
+}"""
+
+
 def generate_self_contained_html(article_list: list[dict], article_details: dict[str, dict]) -> str:
     """將資料注入 HTML，建立兼具 API 模式與純靜態離線模式的發布版 index.html。"""
     raw_html = SOURCE_HTML.read_text(encoding="utf-8")
 
-    list_json = json.dumps(article_list, ensure_ascii=False)
-    details_json = json.dumps(article_details, ensure_ascii=False)
+    list_json = embed_json(article_list)
+    details_json = embed_json(article_details)
 
     # 注入預烘焙資料與無縫 Fallback 邏輯
     data_injection = f"""
@@ -130,73 +269,20 @@ window.__PREBAKED_AIHR_DETAILS__ = {details_json};
     else:
         html_with_data = data_injection + raw_html
 
-    # 升級 loadArticles() 支援靜態 fallback
-    old_load_articles = """async function loadArticles(){
- try{
-  const response=await fetch('/api/aihr-articles');
-  if(!response.ok) throw new Error('文章 API 回應失敗');
-  aihrArticles=await response.json();
-  renderHome();
- }catch{
-  aihrArticles=[];
-  $('#latestArticles').innerHTML='<p class="empty-copy">讀不到 SQLite。請在專案資料夾執行 python3 serve_blueprint.py，再開 http://127.0.0.1:8765/ 。直接點開 HTML 檔無法讀資料庫。</p>';
-  $('#articleRows').innerHTML='<tr><td class="empty-row" colspan="6">尚未連上 AIHR文章學習/aihr_articles.db</td></tr>';
-  $('#articleCount').textContent='尚未連上文章資料庫';
-  $('#librarySource').textContent='需要本機服務才能讀 SQLite';
- }
-}"""
-
-    new_load_articles = """async function loadArticles(){
- try{
-  const response=await fetch('/api/aihr-articles');
-  if(!response.ok) throw new Error('文章 API 回應失敗');
-  aihrArticles=await response.json();
-  renderHome();
- }catch{
-  // 進入靜態／離線 Fallback 模式（適用於 GitHub Pages 或直接打開 HTML）
-  if(window.__PREBAKED_AIHR_ARTICLES__ && window.__PREBAKED_AIHR_ARTICLES__.length){
-   aihrArticles=window.__PREBAKED_AIHR_ARTICLES__;
-   renderHome();
-   const zhCount=aihrArticles.filter(a=>a.has_zh).length;
-   $('#librarySource').textContent=`發布版靜態資料 · ${aihrArticles.length} 篇 · ${zhCount} 篇有中文`;
-  }else{
-   aihrArticles=[];
-   $('#latestArticles').innerHTML='<p class="empty-copy">無內建文章資料。</p>';
-   $('#articleRows').innerHTML='<tr><td class="empty-row" colspan="6">尚未連上文章資料庫</td></tr>';
-   $('#articleCount').textContent='尚未連上文章資料庫';
-   $('#librarySource').textContent='需要本機服務才能讀 SQLite';
-  }
- }
-}"""
-
-    # 升級 openArticle() 支援靜態全文 fallback
-    old_open_article = """  let article=articleCache.get(slug);
-  if(!article){
-   const response=await fetch('/api/aihr-articles/'+encodeURIComponent(slug));
-   if(!response.ok) throw new Error('讀不到這篇');
-   article=await response.json();
-   articleCache.set(slug, article);
-  }
-  showArticle(article);"""
-
-    new_open_article = """  let article=articleCache.get(slug);
-  if(!article){
-   try{
-    const response=await fetch('/api/aihr-articles/'+encodeURIComponent(slug));
-    if(response.ok){
-     article=await response.json();
-    }
-   }catch(e){}
-   if(!article && window.__PREBAKED_AIHR_DETAILS__ && window.__PREBAKED_AIHR_DETAILS__[slug]){
-    article=window.__PREBAKED_AIHR_DETAILS__[slug];
-   }
-   if(!article) throw new Error('讀取不到該文章全文');
-   articleCache.set(slug, article);
-  }
-  showArticle(article);"""
-
-    html_with_data = html_with_data.replace(old_load_articles, new_load_articles)
-    html_with_data = html_with_data.replace(old_open_article, new_open_article)
+    # 母版 fetch 曾加上 {cache:'no-store'}，整段字串比對會悄悄失敗。改用函式邊界替換。
+    html_with_data = replace_js_function(html_with_data, "async function loadArticles(){", NEW_LOAD_ARTICLES)
+    html_with_data = replace_js_function(html_with_data, "async function openArticle(slug){", NEW_OPEN_ARTICLE)
+    required = (
+        "window.__PREBAKED_AIHR_DETAILS__[slug]",
+        "發布版靜態資料",
+        "function renderArticlePagination(",
+        "function closeArticleModal(",
+    )
+    missing = [marker for marker in required if marker not in html_with_data]
+    if missing or html_with_data.count("async function loadArticles()") != 1:
+        raise RuntimeError(f"靜態 fallback 沒有正確裝上：{missing}")
+    if "讀不到 SQLite" in html_with_data:
+        raise RuntimeError("舊的 SQLite 錯誤訊息還在，fallback 沒有換掉")
 
     return html_with_data
 

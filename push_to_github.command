@@ -38,7 +38,11 @@ if ! git ls-remote git@github.com:artgistim/aihr-learn.git >/dev/null 2>&1; then
     exit 1
 fi
 
-# 4. 提交與推送
+# 4. 先依母資料庫重打包，避免把還沒裝上靜態讀取的 index.html 推上去
+echo "📄 正在依目前資料庫重新產生 index.html..."
+python3 "$DIR/export_publish.py"
+
+# 5. 提交與推送
 echo "📝 正在提交最新檔案..."
 git add .
 if git diff-index --quiet HEAD -- 2>/dev/null; then
