@@ -510,6 +510,28 @@ function withoutInlineSourceMetadata(source){
   .join('\n')
   .replace(/^\s+/, '');
 }
+function stripTrailingEnglishParenthetical(value){
+ let cleaned=String(value||'').trimEnd();
+ while(cleaned.endsWith(')')||cleaned.endsWith('）')){
+  const closeChar=cleaned.at(-1),openChar=closeChar===')'?'(':'（';
+  let depth=0,start=-1;
+  for(let index=cleaned.length-1;index>=0;index--){
+   const char=cleaned[index];
+   if(char===closeChar)depth++;
+   else if(char===openChar){depth--;if(depth===0){start=index;break;}}
+  }
+  const suffix=cleaned.slice(start+1,-1);
+  if(start<0||!/[A-Za-z]{2}/.test(suffix)||/[\u3400-\u9FFF]/.test(suffix))break;
+  cleaned=cleaned.slice(0,start).trimEnd();
+ }
+ return cleaned;
+}
+function withoutEnglishInChineseHeadings(source){
+ return String(source||'').split('\n').map(line=>{
+  const heading=/^(#{1,6}\s+)(.*)$/.exec(line);
+  return heading?heading[1]+stripTrailingEnglishParenthetical(heading[2]):line;
+ }).join('\n');
+}
 function cleanSummaryText(value){
  return String(value||'')
   .replace(/^#{1,6}\s+.*$/gm,' ')
@@ -728,7 +750,7 @@ function showArticle(article){
  const images=imageGallery(article.images);
  const sourceMeta=articleSourceMeta(article);
  if(articlePane==='en') $('#articleModalBody').innerHTML=sourceMeta+images+renderMarkdown(withoutInlineSourceMetadata(article.body_en));
- else if(articlePane==='zh') $('#articleModalBody').innerHTML=(article.has_zh?sourceMeta+renderMarkdown(withoutInlineSourceMetadata(article.body_zh)):'<p class="empty-copy">這篇還沒有中文譯本。</p>');
+ else if(articlePane==='zh') $('#articleModalBody').innerHTML=(article.has_zh?sourceMeta+renderMarkdown(withoutEnglishInChineseHeadings(withoutInlineSourceMetadata(article.body_zh))):'<p class="empty-copy">這篇還沒有中文譯本。</p>');
  else $('#articleModalBody').innerHTML=renderSummaryPane(article);
 }
 async function openArticle(slug){
