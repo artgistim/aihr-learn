@@ -476,7 +476,7 @@ exec python3 "$DIR/serve_blueprint.py"
     cmd_file.chmod(0o755)
 
     # 7. 建立說明文件與 GitHub 私人同步指南
-    readme_content = """# AIHR 文章學習與決策藍圖（獨立發布版）
+    readme_content = f"""# AIHR 文章學習與決策藍圖（獨立發布版）
 
 本資料夾為專屬的獨立發布套件，已將文章資料庫、最新中文翻譯文章與互動藍圖前端完整打包。
 
@@ -486,7 +486,7 @@ exec python3 "$DIR/serve_blueprint.py"
 
 1. **雙模支援 (Hybrid Support)**：
    - **本機動態模式**：雙擊 `啟動發布版藍圖.command` 即可在本地瀏覽器秒開（連接埠 `8768`）。
-   - **純靜態自給自足模式**：`index.html` 內嵌完整的文章備份資料。即使沒有 Python 後端（如上傳至 GitHub / GitHub Pages / 任何靜態 Hosting），直接點開也能完整檢索 104 篇文章與高質感中文表格對照！
+   - **純靜態自給自足模式**：`index.html` 內嵌完整的文章備份資料。即使沒有 Python 後端（如上傳至 GitHub / GitHub Pages / 任何靜態 Hosting），直接點開也能完整檢索 {len(article_list)} 篇文章與高質感中文表格對照！
 2. **獨立乾淨**：不依賴母專案的其他草稿與大型檔案，隨時可單獨版控。
 
 ---
