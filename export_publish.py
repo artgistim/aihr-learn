@@ -258,13 +258,16 @@ NEW_LOAD_ARTICLES = """async function loadArticles(){
 NEW_OPEN_ARTICLE = """async function openArticle(slug){
  const known=aihrArticles.find(item=>item.slug===slug);
  articlePane=known&&known.has_zh?'summary':'en';
+ articleModalOrigin=document.activeElement;
  $('#articleModal').dataset.slug=slug;
  $('#articleModal').hidden=false;
  document.body.style.overflow='hidden';
  $('#articleModalTitle').textContent=known?known.title:'讀取中';
  $('#articleModalZh').textContent='';
+ $('#articleModalTaxonomy').innerHTML=known?`<span class="category-pill">${esc(known.category)}</span>${taxonomyTags(known,8)}`:'';
  $('#articleUsageNote').textContent='';
  $('#articleModalBody').innerHTML='<p>讀取全文…</p>';
+ requestAnimationFrame(()=>$('#articleModalClose').focus());
  try{
   let article=articleCache.get(slug);
   if(!article){
@@ -548,7 +551,7 @@ exec python3 "$DIR/serve_blueprint.py"
     cmd_file.chmod(0o755)
 
     # 7. 建立說明文件與 GitHub 私人同步指南
-    readme_content = f"""# AIHR 文章學習與決策藍圖（獨立發布版）
+    readme_content = f"""# 人力資源學習與員工體驗決策平台（獨立發布版）
 
 本資料夾為專屬的獨立發布套件，已將文章資料庫、最新中文翻譯文章與互動藍圖前端完整打包。
 
@@ -560,7 +563,7 @@ exec python3 "$DIR/serve_blueprint.py"
    - **本機動態模式**：雙擊 `啟動發布版藍圖.command` 即可在本地瀏覽器秒開（連接埠 `8768`）。
    - **純靜態自給自足模式**：`index.html` 內嵌完整的文章備份資料。即使沒有 Python 後端（如上傳至 GitHub / GitHub Pages / 任何靜態 Hosting），直接點開也能完整檢索 {len(article_list)} 篇文章與高質感中文表格對照！
 2. **獨立乾淨**：不依賴母專案的其他草稿與大型檔案，隨時可單獨版控。
-3. **專業分類**：以五大人資職能作為唯一主分類，另提供主題次分類、跨領域、員工歷程與內容型態標籤；規則詳見 `AIHR文章分類原則.md`。
+3. **專業分類**：以五大人資職能作為唯一主分類，搭配 20 個主題次分類與 11 個跨領域標籤，另保留員工歷程與內容型態標籤；規則詳見 `AIHR文章分類原則.md`。
 
 ---
 
