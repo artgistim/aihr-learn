@@ -22,6 +22,8 @@ SOURCE_HTML = BASE_DIR / "EX_Interactive_Lifecycle_Blueprint.html"
 SOURCE_DB = BASE_DIR / "AIHR文章學習" / "aihr_articles.db"
 SOURCE_EN_DIR = BASE_DIR / "AIHR文章學習" / "articles"
 SOURCE_ZH_DIR = BASE_DIR / "AIHR文章學習" / "articles_zh"
+SOURCE_TAXONOMY_DOC = BASE_DIR / "AIHR文章學習" / "AIHR文章分類原則.md"
+SOURCE_CLASSIFICATIONS = BASE_DIR / "AIHR文章學習" / "article_classifications.json"
 
 # 發布版目標目錄
 PUBLISH_DIR = BASE_DIR / "AIHR文章學習_發布版"
@@ -29,6 +31,33 @@ PUBLISH_HTML = PUBLISH_DIR / "index.html"
 PUBLISH_DB = PUBLISH_DIR / "aihr_articles.db"
 PUBLISH_EN_DIR = PUBLISH_DIR / "articles"
 PUBLISH_ZH_DIR = PUBLISH_DIR / "articles_zh"
+TAG_GROUP_KEYS = {
+    "topic": "topic_tags",
+    "cross_domain": "cross_domain_tags",
+    "lifecycle": "lifecycle_tags",
+    "content_type": "content_types",
+}
+
+
+def load_tags(conn: sqlite3.Connection, slugs: list[str]) -> dict[str, dict[str, list[str]]]:
+    result = {slug: {key: [] for key in TAG_GROUP_KEYS.values()} for slug in slugs}
+    if not slugs:
+        return result
+    placeholders = ",".join("?" for _ in slugs)
+    rows = conn.execute(
+        f"""
+        SELECT slug, tag_group, tag
+        FROM article_tags
+        WHERE slug IN ({placeholders})
+        ORDER BY slug, tag_group, sort_order
+        """,
+        slugs,
+    ).fetchall()
+    for row in rows:
+        key = TAG_GROUP_KEYS.get(row["tag_group"])
+        if key:
+            result[row["slug"]][key].append(row["tag"])
+    return result
 
 
 def collect_database_data() -> tuple[list[dict], dict[str, dict]]:
@@ -46,12 +75,13 @@ def collect_database_data() -> tuple[list[dict], dict[str, dict]]:
         SELECT slug, source_url, title_en, title_zh, author, published, modified, category,
                substr(summary_en, 1, 280) AS summary_en,
                substr(summary_zh, 1, 280) AS summary_zh,
-               has_en, has_zh,
+               has_en, has_zh, classification_version, needs_review,
                (SELECT COUNT(*) FROM article_images i WHERE i.slug = articles.slug) AS image_count
         FROM articles
         ORDER BY modified DESC, published DESC, slug
         """
     ).fetchall()
+    tags_by_slug = load_tags(conn, [row["slug"] for row in list_rows])
 
     article_list = []
     for row in list_rows:
@@ -67,11 +97,15 @@ def collect_database_data() -> tuple[list[dict], dict[str, dict]]:
                 "updated": modified,
                 "author": row["author"] or "",
                 "category": row["category"] or "其他",
+                "primary_category": row["category"] or "其他",
                 "summary_en": row["summary_en"] or "",
                 "summary_zh": row["summary_zh"] or "",
                 "has_en": bool(row["has_en"]),
                 "has_zh": bool(row["has_zh"]),
                 "image_count": row["image_count"],
+                "classification_version": row["classification_version"],
+                "needs_review": bool(row["needs_review"]),
+                **tags_by_slug[row["slug"]],
             }
         )
 
@@ -95,12 +129,16 @@ def collect_database_data() -> tuple[list[dict], dict[str, dict]]:
             "updated": modified,
             "author": r["author"] or "",
             "category": r["category"] or "其他",
+            "primary_category": r["category"] or "其他",
             "summary_en": r["summary_en"] or "",
             "summary_zh": r["summary_zh"] or "",
             "body_en": r["body_en"] or "",
             "body_zh": r["body_zh"] or "",
             "has_en": bool(r["has_en"]),
             "has_zh": bool(r["has_zh"]),
+            "classification_version": r["classification_version"],
+            "needs_review": bool(r["needs_review"]),
+            **tags_by_slug[slug],
             "images": [{"lang": im["lang"], "src": im["src"], "alt": im["alt"] or ""} for im in img_rows],
         }
 
@@ -311,6 +349,9 @@ def export() -> None:
     print("💾 正在備份 aihr_articles.db...")
     shutil.copy2(SOURCE_DB, PUBLISH_DB)
     print(f"   已寫入: {PUBLISH_DB}")
+    shutil.copy2(SOURCE_TAXONOMY_DOC, PUBLISH_DIR / SOURCE_TAXONOMY_DOC.name)
+    shutil.copy2(SOURCE_CLASSIFICATIONS, PUBLISH_DIR / SOURCE_CLASSIFICATIONS.name)
+    print("   已同步分類原則與文章分類清冊")
 
     # 4. 複製 articles 與 articles_zh 原檔
     print("📂 正在同步英文與中文 Markdown 文章...")
@@ -341,6 +382,12 @@ ROOT = Path(__file__).resolve().parent
 HTML_PATH = ROOT / "index.html"
 DB_PATH = ROOT / "aihr_articles.db"
 PORT = 8768  # 發布版專屬獨立 Port，避免與主專案衝突
+TAG_GROUP_KEYS = {
+    "topic": "topic_tags",
+    "cross_domain": "cross_domain_tags",
+    "lifecycle": "lifecycle_tags",
+    "content_type": "content_types",
+}
 
 class PublishHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
@@ -362,6 +409,21 @@ class PublishHandler(BaseHTTPRequestHandler):
             return
         self._json({"error": "找不到路徑"}, status=404)
 
+    def load_tags(self, conn: sqlite3.Connection, slugs: list[str]) -> dict[str, dict[str, list[str]]]:
+        result = {slug: {key: [] for key in TAG_GROUP_KEYS.values()} for slug in slugs}
+        if not slugs:
+            return result
+        placeholders = ",".join("?" for _ in slugs)
+        rows = conn.execute(
+            f"SELECT slug, tag_group, tag FROM article_tags WHERE slug IN ({placeholders}) ORDER BY slug, tag_group, sort_order",
+            slugs,
+        ).fetchall()
+        for row in rows:
+            key = TAG_GROUP_KEYS.get(row["tag_group"])
+            if key:
+                result[row["slug"]][key].append(row["tag"])
+        return result
+
     def list_articles(self) -> list[dict]:
         conn = sqlite3.connect(DB_PATH)
         conn.row_factory = sqlite3.Row
@@ -370,12 +432,13 @@ class PublishHandler(BaseHTTPRequestHandler):
             SELECT slug, source_url, title_en, title_zh, author, published, modified, category,
                    substr(summary_en, 1, 280) AS summary_en,
                    substr(summary_zh, 1, 280) AS summary_zh,
-                   has_en, has_zh,
+                   has_en, has_zh, classification_version, needs_review,
                    (SELECT COUNT(*) FROM article_images i WHERE i.slug = articles.slug) AS image_count
             FROM articles
             ORDER BY modified DESC, published DESC, slug
             \"\"\"
         ).fetchall()
+        tags_by_slug = self.load_tags(conn, [row["slug"] for row in rows])
         res = []
         for r in rows:
             res.append({
@@ -387,11 +450,15 @@ class PublishHandler(BaseHTTPRequestHandler):
                 "updated": (r["modified"] or "")[:10] or (r["published"] or "")[:10],
                 "author": r["author"] or "",
                 "category": r["category"] or "其他",
+                "primary_category": r["category"] or "其他",
                 "summary_en": r["summary_en"] or "",
                 "summary_zh": r["summary_zh"] or "",
                 "has_en": bool(r["has_en"]),
                 "has_zh": bool(r["has_zh"]),
                 "image_count": r["image_count"],
+                "classification_version": r["classification_version"],
+                "needs_review": bool(r["needs_review"]),
+                **tags_by_slug[r["slug"]],
             })
         conn.close()
         return res
@@ -404,6 +471,7 @@ class PublishHandler(BaseHTTPRequestHandler):
             conn.close()
             return None
         imgs = conn.execute("SELECT lang, src, alt FROM article_images WHERE slug = ? ORDER BY id", (slug,)).fetchall()
+        tags = self.load_tags(conn, [slug])[slug]
         conn.close()
         return {
             "slug": row["slug"],
@@ -414,12 +482,16 @@ class PublishHandler(BaseHTTPRequestHandler):
             "updated": (row["modified"] or "")[:10] or (row["published"] or "")[:10],
             "author": row["author"] or "",
             "category": row["category"] or "其他",
+            "primary_category": row["category"] or "其他",
             "summary_en": row["summary_en"] or "",
             "summary_zh": row["summary_zh"] or "",
             "body_en": row["body_en"] or "",
             "body_zh": row["body_zh"] or "",
             "has_en": bool(row["has_en"]),
             "has_zh": bool(row["has_zh"]),
+            "classification_version": row["classification_version"],
+            "needs_review": bool(row["needs_review"]),
+            **tags,
             "images": [{"lang": im["lang"], "src": im["src"], "alt": im["alt"] or ""} for im in imgs],
         }
 
@@ -488,6 +560,7 @@ exec python3 "$DIR/serve_blueprint.py"
    - **本機動態模式**：雙擊 `啟動發布版藍圖.command` 即可在本地瀏覽器秒開（連接埠 `8768`）。
    - **純靜態自給自足模式**：`index.html` 內嵌完整的文章備份資料。即使沒有 Python 後端（如上傳至 GitHub / GitHub Pages / 任何靜態 Hosting），直接點開也能完整檢索 {len(article_list)} 篇文章與高質感中文表格對照！
 2. **獨立乾淨**：不依賴母專案的其他草稿與大型檔案，隨時可單獨版控。
+3. **專業分類**：以五大人資職能作為唯一主分類，另提供主題次分類、跨領域、員工歷程與內容型態標籤；規則詳見 `AIHR文章分類原則.md`。
 
 ---
 

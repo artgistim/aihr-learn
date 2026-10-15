@@ -1,0 +1,2241 @@
+{
+  "classification_version": "2026-10-15-v1",
+  "primary_categories": [
+    "人力資源策略與組織規劃",
+    "人才招募與任用",
+    "人才發展與績效管理",
+    "員工體驗、獎酬與留任",
+    "人資營運與治理"
+  ],
+  "article_count": 123,
+  "articles": {
+    "360-recruitment": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募策略"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "招募甄選"
+      ],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "7-reasons-why-employee-recognition-matters": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工認可"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "9-box-grid": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人才盤點",
+        "九宮格",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "績效回饋"
+      ],
+      "content_types": [
+        "完整指南",
+        "實務框架",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "9-hr-analytics-terms-know": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "People Analytics"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "基礎概念",
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "advanced-data-analysis-techniques-applied-to-people-analytics": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "診斷性分析",
+        "預測性分析"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "affinity-group-vs-employee-resource-group": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "DEIB"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "agile-workforce-planning": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人力規劃"
+      ],
+      "cross_domain_tags": [
+        "預測性分析",
+        "決策支援"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "aging-workforce-challenges": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人力規劃"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "研究與統計",
+        "趨勢觀察"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-agents-for-recruiting": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募策略",
+        "招募工具"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "AI Agent"
+      ],
+      "lifecycle_tags": [
+        "招募甄選"
+      ],
+      "content_types": [
+        "工具評比"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-and-employee-wellbeing": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "福祉與心理健康"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-culture": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "組織文化與價值觀"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "變革管理"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "操作步驟"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-for-employee-experience": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-in-employee-engagement": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工敬業"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-in-employee-onboarding": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "到職管理"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "到職融入"
+      ],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-in-hr-analytics": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "People Analytics"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南",
+        "操作步驟",
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-in-recruitment": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募策略"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "AI 治理",
+        "風險管理"
+      ],
+      "lifecycle_tags": [
+        "招募甄選"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-in-recruitment-examples": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募策略"
+      ],
+      "cross_domain_tags": [
+        "AI for HR"
+      ],
+      "lifecycle_tags": [
+        "招募甄選"
+      ],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-onboarding": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "到職管理"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "到職融入"
+      ],
+      "content_types": [
+        "操作步驟",
+        "工具評比"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-terms-for-hr": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "AI 治理與風險"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "AI 治理",
+        "風險管理"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-training-for-employees": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "學習與發展",
+        "能力與技能管理"
+      ],
+      "cross_domain_tags": [
+        "AI for HR"
+      ],
+      "lifecycle_tags": [
+        "學習成長"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "ai-workforce-planning": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人力規劃"
+      ],
+      "cross_domain_tags": [
+        "AI for HR",
+        "預測性分析",
+        "決策支援"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "aihr-vs-shrm": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "職涯發展"
+      ],
+      "content_types": [
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "business-acumen-for-hr-professionals": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "HRBP與商業敏銳度"
+      ],
+      "cross_domain_tags": [
+        "商業敏銳度",
+        "策略連結"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "career-development-tools": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "能力與技能管理",
+        "職涯發展"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech"
+      ],
+      "lifecycle_tags": [
+        "學習成長",
+        "職涯發展"
+      ],
+      "content_types": [
+        "工具評比",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "career-progression-framework": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "職涯發展",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "職涯發展"
+      ],
+      "content_types": [
+        "實務框架",
+        "操作步驟",
+        "範本",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "contingent-workforce": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "彈性與非典型人力"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "culture-and-employee-retention": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "組織文化與價值觀",
+        "留任"
+      ],
+      "cross_domain_tags": [
+        "變革管理"
+      ],
+      "lifecycle_tags": [
+        "敬業連結",
+        "留任"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "difference-between-people-analytics-and-hr-analytics": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "People Analytics"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "基礎概念",
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "digital-employee-experience": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "數位員工體驗",
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "Digital HR",
+        "HR Tech"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "digital-hr": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "數位轉型"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "drivers-of-employee-engagement": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工敬業",
+        "福利"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-engagement-analytics": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工敬業",
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "操作步驟",
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-engagement-best-practices": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工敬業"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-engagement-committee": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工敬業",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "操作步驟",
+        "企業案例",
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-engagement-metrics": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工敬業",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI",
+        "Employee Experience",
+        "EX 衡量"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "指標與公式",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-experience-design": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工體驗設計",
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "Experience Design",
+        "Touchpoint"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-experience-examples": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-experience-guide": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-experience-management": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工體驗設計",
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "操作步驟"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-experience-manager": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "能力與技能管理",
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "學習成長",
+        "敬業連結"
+      ],
+      "content_types": [
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-experience-statistics": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI",
+        "Employee Experience",
+        "EX 衡量"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "研究與統計"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-experience-strategy": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工體驗設計",
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "指標與 KPI",
+        "Employee Experience",
+        "商業敏銳度",
+        "策略連結"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "操作步驟",
+        "指標與公式"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-experience-vs-employee-engagement": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "Employee Experience",
+        "員工敬業"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-information-form": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人事行政",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-journey": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工歷程"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "Employee Journey"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "基礎概念",
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-life-cycle": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工歷程"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "Employee Journey"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南",
+        "實務框架",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-listening-strategy": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工傾聽"
+      ],
+      "cross_domain_tags": [
+        "指標與 KPI",
+        "Employee Experience",
+        "Employee Listening",
+        "員工聲音",
+        "商業敏銳度",
+        "策略連結"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "指標與公式",
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-onboarding": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "到職管理"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "到職融入"
+      ],
+      "content_types": [
+        "完整指南",
+        "操作步驟",
+        "範本",
+        "檢核表"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-pulse-surveys": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工調查",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "Employee Listening",
+        "員工聲音"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "完整指南",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-recognition": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工認可"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "操作步驟"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-recognition-ideas": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工認可",
+        "組織文化與價值觀"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "變革管理"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-retention-metrics": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "留任"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [
+        "留任"
+      ],
+      "content_types": [
+        "指標與公式"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-retention-rate": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "留任"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [
+        "留任"
+      ],
+      "content_types": [
+        "指標與公式",
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employee-termination-checklist": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "離職管理"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "風險管理"
+      ],
+      "lifecycle_tags": [
+        "離職"
+      ],
+      "content_types": [
+        "完整指南",
+        "範本",
+        "檢核表"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "employment-verification-letter-template": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人事行政",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "examples-of-core-values-in-the-workplace": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "組織文化與價值觀"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "expense-reimbursement-policy": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人資政策與 SOP",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "範本",
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "frontline-employee-experience": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "第一線員工體驗",
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "future-hr-skills": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "能力與技能管理"
+      ],
+      "cross_domain_tags": [
+        "變革管理"
+      ],
+      "lifecycle_tags": [
+        "學習成長"
+      ],
+      "content_types": [
+        "趨勢觀察"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "future-of-employee-experience": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "變革管理"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務框架",
+        "趨勢觀察"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "future-ready-employee-experience": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "員工體驗設計",
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience",
+        "變革管理"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務框架",
+        "趨勢觀察"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "global-hr-certification": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "工具評比",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "head-of-employee-experience": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "how-much-does-hr-make": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "how-to-calculate-employee-turnover-rate": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "離職與流動",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [
+        "離職"
+      ],
+      "content_types": [
+        "操作步驟",
+        "指標與公式",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "how-to-get-hr-certification-without-experience": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "操作步驟",
+        "工具評比",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "how-to-support-mental-health-in-the-workplace": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "福祉與心理健康"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "操作步驟"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-ai-skills-templates": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "能力與技能管理",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [
+        "AI for HR"
+      ],
+      "lifecycle_tags": [
+        "學習成長"
+      ],
+      "content_types": [
+        "操作步驟",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-annual-calendar": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人事行政",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "範本",
+        "趨勢觀察"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-automation": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "福利",
+        "流程自動化"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech",
+        "流程自動化"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "基礎概念",
+        "企業案例",
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-automation-ideas": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "流程自動化"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech",
+        "流程自動化"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-budgeting-best-practices": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人資預算與資源"
+      ],
+      "cross_domain_tags": [
+        "商業敏銳度",
+        "策略連結"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-career-path": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "職涯發展"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "職涯發展"
+      ],
+      "content_types": [
+        "完整指南",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-conferences": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "工具評比",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-digital-transformation-challenges": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人資表單與範本",
+        "數位轉型"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech",
+        "變革管理"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-for-startups": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "新創與中小企業人資"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-investigation-template": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人資調查與紀律",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [
+        "風險管理"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "企業案例",
+        "範本",
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-leader-lessons": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "HR 領導力"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "趨勢觀察"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-life-cycle": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "核心人資流程"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "基礎概念",
+        "實務框架",
+        "操作步驟"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-manager-certification-online": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "工具評比",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-metrics-and-analytics-how-both-can-add-value": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "指標與公式",
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-processes": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "核心人資流程"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南",
+        "操作步驟"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-recertification-courses": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "工具評比",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-rules-and-regulations": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人資政策與 SOP",
+        "勞動法令與合規"
+      ],
+      "cross_domain_tags": [
+        "AI 治理",
+        "風險管理"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "法規說明"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-skills": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "能力與技能管理"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "學習成長"
+      ],
+      "content_types": [
+        "完整指南",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-skills-of-the-future": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "能力與技能管理"
+      ],
+      "cross_domain_tags": [
+        "變革管理"
+      ],
+      "lifecycle_tags": [
+        "學習成長"
+      ],
+      "content_types": [
+        "趨勢觀察"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-strategy-examples": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人資策略"
+      ],
+      "cross_domain_tags": [
+        "指標與 KPI",
+        "商業敏銳度",
+        "策略連結"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "指標與公式",
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-swot-analysis": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人資策略",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "操作步驟"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-tech-stack": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "HR 科技"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南",
+        "企業案例",
+        "工具評比"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-templates": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "實務框架",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-tools": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "HR 科技"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "工具評比"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hr-trends": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "HR 趨勢與未來工作"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "趨勢觀察"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "human-resource-best-practices": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人資策略"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "human-resource-hr-professional-day": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "指標與公式",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "human-resource-strategy": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人資策略"
+      ],
+      "cross_domain_tags": [
+        "指標與 KPI",
+        "商業敏銳度",
+        "策略連結"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "操作步驟",
+        "指標與公式"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "human-resources-information-system-hris": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "人資表單與範本",
+        "HRIS"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "基礎概念"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "hybrid-work-schedule": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "混合與彈性工作"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "is-hr-generalist-certification-worth-it": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "人資職涯與認證"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "職涯發展"
+      ],
+      "content_types": [
+        "操作步驟",
+        "工具評比",
+        "職涯資訊"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "job-analysis": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "工作與職務設計",
+        "職務分析",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "招募甄選"
+      ],
+      "content_types": [
+        "完整指南",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "measuring-employee-experience": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI",
+        "Employee Experience",
+        "EX 衡量"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "offboarding-checklist": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "離職管理"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "離職"
+      ],
+      "content_types": [
+        "操作步驟",
+        "範本",
+        "檢核表"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "onboarding-metrics": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募成效",
+        "到職管理"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI",
+        "Employee Experience",
+        "EX 衡量"
+      ],
+      "lifecycle_tags": [
+        "到職融入"
+      ],
+      "content_types": [
+        "指標與公式"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "onboarding-process-examples": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "到職管理"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "到職融入"
+      ],
+      "content_types": [
+        "操作步驟",
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "payroll-metrics": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "薪酬"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "指標與公式"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "people-analytics": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "People Analytics"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "podcast-amy-goldfinger-employee-experience-walmart": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "第一線員工體驗",
+        "Employee Experience"
+      ],
+      "cross_domain_tags": [
+        "Employee Experience"
+      ],
+      "lifecycle_tags": [
+        "敬業連結"
+      ],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "professional-development-plan-template": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "學習與發展",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "學習成長"
+      ],
+      "content_types": [
+        "完整指南",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "recruiting-metrics": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募策略",
+        "招募成效"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [
+        "招募甄選"
+      ],
+      "content_types": [
+        "指標與公式"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "recruitment-and-retention": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募策略",
+        "留任"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "招募甄選",
+        "留任"
+      ],
+      "content_types": [
+        "操作步驟"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "recruitment-ideas": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募策略"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "人才吸引",
+        "招募甄選"
+      ],
+      "content_types": [
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "recruitment-tools-overview": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "招募策略",
+        "招募工具"
+      ],
+      "cross_domain_tags": [
+        "Digital HR",
+        "HR Tech"
+      ],
+      "lifecycle_tags": [
+        "招募甄選"
+      ],
+      "content_types": [
+        "工具評比"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "resource-analysis": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人力資源最佳化"
+      ],
+      "cross_domain_tags": [
+        "People Analytics"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "roles-and-responsibilities-template": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "工作與職務設計",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "工作與貢獻"
+      ],
+      "content_types": [
+        "企業案例",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "sourcing-strategies": {
+      "primary_category": "人才招募與任用",
+      "topic_tags": [
+        "人才搜尋"
+      ],
+      "cross_domain_tags": [
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [
+        "人才吸引"
+      ],
+      "content_types": [
+        "指標與公式"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "termination-letter-template": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "離職管理",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [
+        "風險管理"
+      ],
+      "lifecycle_tags": [
+        "離職"
+      ],
+      "content_types": [
+        "企業案例",
+        "範本"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "the-hr-analytics-management-cycle": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "People Analytics"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "實務框架",
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "types-of-compensation": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "薪酬"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "完整指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "types-of-employee-benefits": {
+      "primary_category": "員工體驗、獎酬與留任",
+      "topic_tags": [
+        "福利"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [],
+      "content_types": [
+        "實務指南"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "what-is-hr-analytics": {
+      "primary_category": "人資營運與治理",
+      "topic_tags": [
+        "People Analytics 方法"
+      ],
+      "cross_domain_tags": [
+        "People Analytics"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "基礎概念",
+        "分析方法"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "work-ethic-examples": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "績效管理"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "工作與貢獻"
+      ],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "work-goals-examples": {
+      "primary_category": "人才發展與績效管理",
+      "topic_tags": [
+        "目標管理",
+        "人資表單與範本"
+      ],
+      "cross_domain_tags": [],
+      "lifecycle_tags": [
+        "工作與貢獻",
+        "績效回饋"
+      ],
+      "content_types": [
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "workforce-optimization": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人力資源最佳化",
+        "福利"
+      ],
+      "cross_domain_tags": [
+        "People Analytics",
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [],
+      "content_types": [
+        "基礎概念",
+        "指標與公式",
+        "企業案例"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    },
+    "workplace-efficiency": {
+      "primary_category": "人力資源策略與組織規劃",
+      "topic_tags": [
+        "人力資源最佳化"
+      ],
+      "cross_domain_tags": [
+        "指標與 KPI"
+      ],
+      "lifecycle_tags": [
+        "工作與貢獻"
+      ],
+      "content_types": [
+        "操作步驟",
+        "指標與公式",
+        "最佳實務"
+      ],
+      "classification_version": "2026-10-15-v1",
+      "classification_source": "專家主分類＋受控詞彙規則",
+      "needs_review": false
+    }
+  }
+}

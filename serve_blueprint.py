@@ -15,6 +15,12 @@ ROOT = Path(__file__).resolve().parent
 HTML_PATH = ROOT / "index.html"
 DB_PATH = ROOT / "aihr_articles.db"
 PORT = 8768  # 發布版專屬獨立 Port，避免與主專案衝突
+TAG_GROUP_KEYS = {
+    "topic": "topic_tags",
+    "cross_domain": "cross_domain_tags",
+    "lifecycle": "lifecycle_tags",
+    "content_type": "content_types",
+}
 
 class PublishHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
@@ -36,6 +42,21 @@ class PublishHandler(BaseHTTPRequestHandler):
             return
         self._json({"error": "找不到路徑"}, status=404)
 
+    def load_tags(self, conn: sqlite3.Connection, slugs: list[str]) -> dict[str, dict[str, list[str]]]:
+        result = {slug: {key: [] for key in TAG_GROUP_KEYS.values()} for slug in slugs}
+        if not slugs:
+            return result
+        placeholders = ",".join("?" for _ in slugs)
+        rows = conn.execute(
+            f"SELECT slug, tag_group, tag FROM article_tags WHERE slug IN ({placeholders}) ORDER BY slug, tag_group, sort_order",
+            slugs,
+        ).fetchall()
+        for row in rows:
+            key = TAG_GROUP_KEYS.get(row["tag_group"])
+            if key:
+                result[row["slug"]][key].append(row["tag"])
+        return result
+
     def list_articles(self) -> list[dict]:
         conn = sqlite3.connect(DB_PATH)
         conn.row_factory = sqlite3.Row
@@ -44,12 +65,13 @@ class PublishHandler(BaseHTTPRequestHandler):
             SELECT slug, source_url, title_en, title_zh, author, published, modified, category,
                    substr(summary_en, 1, 280) AS summary_en,
                    substr(summary_zh, 1, 280) AS summary_zh,
-                   has_en, has_zh,
+                   has_en, has_zh, classification_version, needs_review,
                    (SELECT COUNT(*) FROM article_images i WHERE i.slug = articles.slug) AS image_count
             FROM articles
             ORDER BY modified DESC, published DESC, slug
             """
         ).fetchall()
+        tags_by_slug = self.load_tags(conn, [row["slug"] for row in rows])
         res = []
         for r in rows:
             res.append({
@@ -61,11 +83,15 @@ class PublishHandler(BaseHTTPRequestHandler):
                 "updated": (r["modified"] or "")[:10] or (r["published"] or "")[:10],
                 "author": r["author"] or "",
                 "category": r["category"] or "其他",
+                "primary_category": r["category"] or "其他",
                 "summary_en": r["summary_en"] or "",
                 "summary_zh": r["summary_zh"] or "",
                 "has_en": bool(r["has_en"]),
                 "has_zh": bool(r["has_zh"]),
                 "image_count": r["image_count"],
+                "classification_version": r["classification_version"],
+                "needs_review": bool(r["needs_review"]),
+                **tags_by_slug[r["slug"]],
             })
         conn.close()
         return res
@@ -78,6 +104,7 @@ class PublishHandler(BaseHTTPRequestHandler):
             conn.close()
             return None
         imgs = conn.execute("SELECT lang, src, alt FROM article_images WHERE slug = ? ORDER BY id", (slug,)).fetchall()
+        tags = self.load_tags(conn, [slug])[slug]
         conn.close()
         return {
             "slug": row["slug"],
@@ -88,12 +115,16 @@ class PublishHandler(BaseHTTPRequestHandler):
             "updated": (row["modified"] or "")[:10] or (row["published"] or "")[:10],
             "author": row["author"] or "",
             "category": row["category"] or "其他",
+            "primary_category": row["category"] or "其他",
             "summary_en": row["summary_en"] or "",
             "summary_zh": row["summary_zh"] or "",
             "body_en": row["body_en"] or "",
             "body_zh": row["body_zh"] or "",
             "has_en": bool(row["has_en"]),
             "has_zh": bool(row["has_zh"]),
+            "classification_version": row["classification_version"],
+            "needs_review": bool(row["needs_review"]),
+            **tags,
             "images": [{"lang": im["lang"], "src": im["src"], "alt": im["alt"] or ""} for im in imgs],
         }
 
